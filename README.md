@@ -57,3 +57,25 @@ curl http://127.0.0.1:8000/product | jq
   }
 ]
 ```
+
+# Docker 
+
+```
+// Build docker image
+docker build -t fastapi_product_api .
+
+// Launch a container
+docker run -p 8000:8000 -d \
+--name my_container_fastapi \
+fastapi_product_api
+
+// Housekeeping
+docker logs my_container_fastapi
+docker exec -it my_container_fastapi bash
+
+// Teardown
+docker container stop my_container_fastapi
+docker container rm my_container_fastapi
+
+docker image rm fastapi_product_api
+```
