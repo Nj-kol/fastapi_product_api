@@ -2,6 +2,20 @@
 
 A simple demonstration of creating APIs using the FastAPI library
 
+## DB Set up
+
+```
+CREATE TABLE product (
+	id INTEGER NOT NULL AUTO_INCREMENT,
+	name VARCHAR(100),
+	description VARCHAR(200),
+	price FLOAT,
+	qty INTEGER,
+	PRIMARY KEY (id),
+	UNIQUE (name)
+);
+```
+
 ## Create project structure
 
 ```bash
@@ -79,3 +93,22 @@ docker container rm my_container_fastapi
 
 docker image rm fastapi_product_api
 ```
+
+# Deploy on Kubernetes
+
+```
+kubectl apply -f deploy/
+
+// Use
+http://127.0.0.1:30274/docs
+
+// Housekeeping
+kubectl get po -o wide
+kubectl logs fastapi-product-api-59857c865c-lqxzr -f
+kubectl exec -it fastapi-product-api-59857c865c-9g2j2 bash
+kubectl get deploy
+kubectl get svc
+
+// Teardown
+kubectl delete -f deploy/
+````
