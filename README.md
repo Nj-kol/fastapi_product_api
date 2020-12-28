@@ -2,9 +2,26 @@
 
 A simple demonstration of creating APIs using the FastAPI library
 
+# Setup
+
+## Create environment
+
+* Checkout the project from git, and under the root folder create a file called `.env`
+
+* Add the following lines :
+
+```bash
+PROJECT_NAME=product_api_fastapi
+BACKEND_CORS_ORIGINS=["http://localhost:8000", "https://localhost:8000", "http://localhost", "https://localhost"]
+
+DATABASE_URI = 'mysql+pymysql://<db_user>:<db_pass>@<hostname>:<port>/<db_name>'
+```
+
 ## DB Set up
 
-```
+* Create a table :
+
+```sql
 CREATE TABLE product (
 	id INTEGER NOT NULL AUTO_INCREMENT,
 	name VARCHAR(100),
@@ -16,16 +33,7 @@ CREATE TABLE product (
 );
 ```
 
-## Create project structure
-
-```bash
-fastapi startproject \
-fastapi_product_api \
---python=3.6 \
---docker \
---database Postgres \
---pre-commit
-```
+* Insert some dummy records for testingß
 
 ## Run the app
 
@@ -34,13 +42,15 @@ cd product_api_fastapi
 fastapi run
 ```
 
-**Generated documentation**
+# Generated Open API docs
 
 http://127.0.0.1:8000/docs
 
+* Also, an alternate form of API documentation is generated
+  
 http://127.0.0.1:8000/redoc
 
-**Endpoints**
+# Endpoints
 
 curl http://127.0.0.1:8000/product | jq
 
