@@ -1,5 +1,6 @@
 import logging
 
+from ..database import db
 from fastapi import APIRouter
 
 from ..repository.product_repo import ProductRepo
@@ -9,7 +10,7 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 # Init repository
-repo = ProductRepo()
+repo = ProductRepo(db)
 
 # Get All Products
 @router.get('/product')

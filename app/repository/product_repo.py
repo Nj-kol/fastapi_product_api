@@ -1,17 +1,20 @@
-
-from ..database import db
 from ..models.product_models import Product
 from ..schemas.product_schema import ProductBase
-
+from sqlalchemy.orm.session import Session
 
 class ProductRepo:
 
+    # parameterized constructor 
+    def __init__(self, db: Session): 
+        self.db = db
+
     def add_product(self,new_product: ProductBase):
-        db.session.add(new_product)
-        db.session.commit()
+       self.db.add(new_product)
+       self.db.commit()
 
     def get_all_products(self):
-      all_products =  db.query(Product).all()
+      all_products =  self.db.query(Product).all()
+      #all_products =  self.db.query()
       return all_products
 
     def update_product(self,id,updated_product: ProductBase):
@@ -20,10 +23,10 @@ class ProductRepo:
       product.description = updated_product.description
       product.price = updated_product.price
       product.qty = updated_product.qty
-      db.session.commit()
+      self.db.commit()
       return product
 
     def delete_product(self,id):
       product = Product.query.get(id)
-      db.session.delete(product)
-      db.session.commit()
+      self.db.delete(product)
+      self.db.commit()
