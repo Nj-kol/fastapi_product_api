@@ -6,9 +6,20 @@ A simple demonstration of creating APIs using the FastAPI library
 
 ## Create environment
 
-* Checkout the project from git, and under the root folder create a file called `.env`
+* Create a virtual environment to run the applicaiton :
 
-* Add the following lines :
+```bash
+conda create -n web_dev python=3.6
+conda activate web_dev
+```
+
+* Checkout the project from git, and install the dependencies
+  
+```bash
+pip install -r requirments.txt
+```
+
+* Under the root folder create a file called `.env` and add the following lines :
 
 ```bash
 PROJECT_NAME=product_api_fastapi
@@ -33,16 +44,18 @@ CREATE TABLE product (
 );
 ```
 
-* Insert some dummy records for testingß
+* Insert some dummy records for testing
 
 ## Run the app
 
 ```bash
-cd product_api_fastapi
+cd fastapi_product_api
 fastapi run
 ```
 
 # Generated Open API docs
+
+* The Open API docgenerated can be viewed at :
 
 http://127.0.0.1:8000/docs
 
@@ -84,41 +97,49 @@ curl http://127.0.0.1:8000/product | jq
 
 # Docker 
 
-```
-// Build docker image
+```bash
+# Build docker image
 docker build -t fastapi_product_api .
 
-// Launch a container
+# Launch a container
 docker run -p 8000:8000 -d \
 --name my_container_fastapi \
 fastapi_product_api
 
-// Housekeeping
+# Housekeeping
 docker logs my_container_fastapi
 docker exec -it my_container_fastapi bash
 
-// Teardown
+# Teardown
 docker container stop my_container_fastapi
 docker container rm my_container_fastapi
-
 docker image rm fastapi_product_api
 ```
 
 # Deploy on Kubernetes
 
-```
-kubectl apply -f deploy/
+* Deploy all artifacts :
 
-// Use
+```bash
+kubectl apply -f deploy/
+```
+
+* Check
+
 http://127.0.0.1:30274/docs
 
-// Housekeeping
+```bash
+# Housekeeping
 kubectl get po -o wide
 kubectl logs fastapi-product-api-59857c865c-lqxzr -f
 kubectl exec -it fastapi-product-api-59857c865c-9g2j2 bash
 kubectl get deploy
 kubectl get svc
+```
 
-// Teardown
+* Shutdown 
+
+```bash
+# Teardown
 kubectl delete -f deploy/
 ````
