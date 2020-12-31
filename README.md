@@ -94,8 +94,24 @@ curl http://127.0.0.1:8000/product | jq
   }
 ]
 ```
+# Testing
 
-# Docker 
+## Run tests
+
+* Testing is accomplished using `pytest` and automated using `tox`.
+* To run using only `pytest` , use  `pytest -s -v`
+* Alternatively, you can run tests with `tox`
+
+## Code coverage reports
+
+* If you run, the tests with `tox`, code coverage is gathered automatically using `coverage`
+* To see the reports : `coverage report -m`
+* To generate html reports :  `coverage html`
+* Alternatively, you can use `coverage run -m pytest -s -v`, to gather coverage data, if you are not using `tox`
+
+# Deployment
+
+## Deploy on Docker 
 
 ```bash
 # Build docker image
@@ -116,7 +132,7 @@ docker container rm my_container_fastapi
 docker image rm fastapi_product_api
 ```
 
-# Deploy on Kubernetes
+## Deploy on Kubernetes
 
 * Deploy all artifacts :
 
