@@ -1,4 +1,3 @@
-
 from typing import List, Union
 
 from pydantic import AnyHttpUrl, BaseSettings, validator
@@ -20,5 +19,6 @@ class Settings(BaseSettings):
     class Config:
         case_sensitive = True
         env_file = ".env"
+
 
 settings = Settings()

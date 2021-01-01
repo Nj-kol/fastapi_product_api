@@ -21,4 +21,5 @@ def get_application():
 
     return _app
 
+
 app = get_application()

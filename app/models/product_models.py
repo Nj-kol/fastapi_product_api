@@ -12,7 +12,7 @@ class Product(Base):
     price = Column(Float)
     qty = Column(Integer)
 
-    def __init__(self, name,description,price,qty):
+    def __init__(self, name, description, price, qty):
         self.name = name
         self.description = description
         self.price = price

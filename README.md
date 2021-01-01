@@ -14,7 +14,7 @@ conda activate web_dev
 ```
 
 * Checkout the project from git, and install the dependencies
-  
+
 ```bash
 pip install -r requirments.txt
 ```
@@ -60,7 +60,7 @@ fastapi run
 http://127.0.0.1:8000/docs
 
 * Also, an alternate form of API documentation is generated
-  
+
 http://127.0.0.1:8000/redoc
 
 # Endpoints
@@ -109,9 +109,18 @@ curl http://127.0.0.1:8000/product | jq
 * To generate html reports :  `coverage html`
 * Alternatively, you can use `coverage run -m pytest -s -v`, to gather coverage data, if you are not using `tox`
 
+# Committing Code
+
+* It's usually a good idea to run the hooks against all of the files when adding new hooks
+  (usually `pre-commit` will only run on the changed files during git hooks)
+
+```bash
+pre-commit run --all-files
+```
+
 # Deployment
 
-## Deploy on Docker 
+## Deploy on Docker
 
 ```bash
 # Build docker image
@@ -153,7 +162,7 @@ kubectl get deploy
 kubectl get svc
 ```
 
-* Shutdown 
+* Shutdown
 
 ```bash
 # Teardown
