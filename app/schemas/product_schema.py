@@ -7,3 +7,10 @@ class ProductBase(BaseModel):
     description: str
     price: float
     qty: int
+
+    class Config:
+        arbitrary_types_allowed = True
+
+
+class Status(BaseModel):
+    message: str
